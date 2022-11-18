@@ -232,3 +232,22 @@ form .group select {
 .centrer {
   text-align: center;
 }
+
+#quantite {
+  text-indent: 10px;
+}
+
+#categorie {
+  text-indent: 10px;
+  margin-bottom: 15px;
+}
+
+#description {
+  margin: 10px;
+  margin-bottom: 20px;
+}
+
+.center {
+  text-align: center;
+  width: 100%;
+}
