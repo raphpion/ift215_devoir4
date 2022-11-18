@@ -1,0 +1,41 @@
+[
+    {
+        "id": 0,
+        "serial": "we23545",
+        "nom": "Banane",
+        "description": "Un poirier est une espèce d'arbre qui offre de bons suppléments",
+        "prix": 24.76,
+        "qte_inventaire": 164,
+        "categorie": {
+            "id": 1,
+            "nom": "Prunier",
+            "description": "Un poirier est une espèce d'arbre qui offre de bons suppléments"
+        }
+    },
+    {
+        "id": 1,
+        "serial": "we23545",
+        "nom": "Tomate",
+        "description": "Un poirier est une espèce d'arbre qui offre de bons suppléments",
+        "prix": 24.76,
+        "qte_inventaire": 41,
+        "categorie": {
+            "id": 2,
+            "nom": "Banane",
+            "description": "Un poirier est une espèce d'arbre qui offre de bons suppléments"
+        }
+    },
+    {
+        "id": 2,
+        "serial": "sdfds",
+        "nom": "concombre",
+        "description": "pas un jouet",
+        "prix": 2.23,
+        "qte_inventaire": 50,
+        "categorie": {
+            "id": 1,
+            "nom": "Prunier",
+            "description": "Un poirier est une espèce d'arbre qui offre de bons suppléments"
+        }
+    }
+]
