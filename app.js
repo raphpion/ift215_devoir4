@@ -18,7 +18,7 @@ app.use(express.static('client'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.get('/', function(req, res) {
+app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, '/client/index.html'));
 });
 
@@ -31,7 +31,7 @@ app.use('/connexion', connexion);
 app.use('/ventes', ventes);
 app.use('/statusCommande', statusCommande);
 
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   if (err instanceof ValidationError) {
     const messages = [];
     for (const cle in err.details) {
@@ -46,4 +46,3 @@ app.use(function(err, req, res, next) {
 });
 
 app.listen(port, () => console.log(`Pro-gramme écoute au http://localhost:${port}`));
-
