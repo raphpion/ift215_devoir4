@@ -35,6 +35,18 @@ const pageConnexion = {
   },
 
   /**
+   * Helper that appends an error message to the bottom of the form.
+   *
+   * @param {string} message The error message that will be added as an alert to the form.
+   */
+  addErrorMessage(message) {
+    pageConnexion.alerts.innerHTML += `<div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <strong>${message}</strong>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>`;
+  },
+
+  /**
    * Helper that appends a success message to the bottom of the form.
    *
    * @param {string} message The success message that will be added as an alert to the form.
@@ -68,7 +80,7 @@ const pageConnexion = {
       data,
       error: (xhr, ajaxOptions, thrownError) => {
         pageConnexion.setNotLoading();
-        addErrorMessage(xhr.responseText);
+        pageConnexion.addErrorMessage(xhr.responseText);
       },
       success: result => {
         console.log(result);
