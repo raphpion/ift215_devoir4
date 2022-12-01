@@ -259,7 +259,9 @@ form .group select {
 }
 
 .navbar .nav-logo {
-  width: 40px;
+  width: 32px;
+  padding-bottom: 3px;
+  margin-right: 16px;
 }
 
 #nav-auth {
