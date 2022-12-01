@@ -214,7 +214,7 @@ form .group select {
 }
 
 #corps-principal {
-  margin-bottom: 25px;
+  padding: 60px 0;
 }
 
 @media screen and (max-width: 900px) {

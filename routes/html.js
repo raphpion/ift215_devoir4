@@ -25,7 +25,6 @@ router.get('/points_de_vente', function (req, res) {
   res.sendFile(path.join(__dirname, '/../client/points_de_vente.html'));
 });
 
-// ajout
 router.get('/produit', function (req, res) {
   res.sendFile(path.join(__dirname, '/../client/produit.html'));
 });
