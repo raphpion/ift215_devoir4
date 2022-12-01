@@ -7,12 +7,10 @@
 }
 
 footer {
-  border: 2px solid black;
-  text-align: center;
-  width: 500px;
-  margin: auto;
-  padding: 20px;
-  clear: both;
+  background-color: #e1e1e1;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  font-weight: bold;
 }
 
 nav {
@@ -261,7 +259,7 @@ form .group select {
 .navbar .nav-logo {
   width: 32px;
   padding-bottom: 3px;
-  margin-right: 16px;
+  margin-right: 8px;
 }
 
 #nav-auth {
