@@ -33,4 +33,8 @@ router.get('/panier', function (req, res) {
   res.sendFile(path.join(__dirname, '/../client/panier.html'));
 });
 
+router.get('/faq', function (req, res) {
+  res.sendFile(path.join(__dirname, '/../client/faq.html'));
+});
+
 module.exports = router;
