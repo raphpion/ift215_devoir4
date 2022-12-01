@@ -251,3 +251,17 @@ form .group select {
   text-align: center;
   width: 100%;
 }
+
+#formulaire-inscription > div.form-control,
+#formulaire-connexion > div.form-control {
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
+.navbar .nav-logo {
+  width: 40px;
+}
+
+#nav-auth {
+  gap: 16px;
+}
