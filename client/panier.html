@@ -9,6 +9,7 @@
   <section id="empty_panier">
   </section>
 <section class="mt-2 container">
+    <!-- <div id="plein_panier"></div> -->
     <div class="row" id="liste_panier">
         <i className="bi bi-trash"></i>
         <table class="table table-panier" id="table_panier">
@@ -17,7 +18,7 @@
                     <th>Nom de l'article</th>
                     <th>Prix à l'unité</th>
                     <th>Quantité</th>
-                    <th>Total</th>
+                    <th class="centrer">Total</th>
                     <th></th>
                 </tr>
             </thead>
@@ -27,7 +28,7 @@
         </table>
     </div>
     <div>
-        <h2 class="prixTot" id="prixTOT"></h2> <!-- prix total -->
+        <h2 class="prixTot" id="prixTOT"></h2>
     </div>
     <div class="buttonConfirmation">
         <button type="button" class="btn btn-primary" id="buttonConfirmer" onclick="confirmation()">Confirmer la commande</button>

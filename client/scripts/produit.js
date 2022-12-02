@@ -72,19 +72,57 @@
 
 function load_panier(item) {
   //image = $('<img src="../images/' + item.nomProduit + '.png" style = "border-right: 2px solid #666DF2"/>'); append(image)
-  nom = $('<td></td>').append(item.nomProduit);
+//   code = $(`<div class="row" id="liste_panier">
+//   <i className="bi bi-trash"></i>
+//   <table class="table table-panier" id="table_panier">
+//       <thead>
+//           <tr>
+//               <th>Nom de l'article</th>
+//               <th>Prix à l'unité</th>
+//               <th>Quantité</th>
+//               <th>Total</th>
+//               <th></th>
+//           </tr>
+//       </thead>
+
+//       <tbody id="body_table" >
+//       <td>`+item.nomProduit+`</td>
+//       <td>`+item.prix+`</td>
+//       <td> 
+//         <div class="row">
+//             <button class="btn btn-primary rounded col" id="bouton_panier" onclick="ajouterItem(`+ item.id + `)"><i class="bi bi-plus-circle-fill"></i></button>
+//             <p class="col center">` + item.quantite + `</p>
+//             <button class="btn btn-primary rounded col" id="bouton_panier" onclick="enleverItem(`+ item.id + `)"><i class="bi bi-dash-circle-fill"></i></button>             
+//         </div> 
+//         </td>
+//         <td>`+ (Math.round(item.quantite * item.prix * 100) / 100) +`</td>
+//         <td><button type="button" class="btn" onClick="remove_item([' + item.id + '])"><span class="bi bi-trash" aria-hidden="true"></span></button></td>
+//       </tbody>
+//   </table>
+// </div>
+// <div>
+//   <h2 class="prixTot" id="prixTOT"></h2> <!-- prix total -->
+// </div>
+// <div class="buttonConfirmation">
+//   <button type="button" class="btn btn-primary" id="buttonConfirmer" onclick="confirmation()">Confirmer la commande</button>
+
+// </div>`);
+
+//<i class="bi bi-plus-circle-fill"></i>
+
+nom = $('<td></td>').append(item.nomProduit);
   prix = $('<td></td>').append(item.prix);
   qte = $(`<td> <div class="row">
-  <button class="btn btn-primary rounded col" id="bouton_panier" onclick="ajouterItem(`+ item.id + `)"><i class="bi bi-plus-circle-fill"></i></button>
+  <button class="btn btn-primary rounded col" id="bouton_panier" onclick="enleverItem(`+ item.id + `)"><i class="bi bi-dash-lg"></i></button>             
   <p class="col center">` + item.quantite + `</p>
-  <button class="btn btn-primary rounded col" id="bouton_panier" onclick="enleverItem(`+ item.id + `)"><i class="bi bi-dash-circle-fill"></i></button>             
+  <button class="btn btn-primary rounded col" id="bouton_panier" onclick="ajouterItem(`+ item.id + `)"><i class="bi bi-plus-lg"></i></button>
   </div> </td>`);
-  total = $('<td></td>').append(Math.round(item.quantite * item.prix * 100) / 100);
-  trash = $('<td></td>')
-      .append('<button type="button" class="btn" onClick="setItemGlobal([' + item.id + '])"><span class="bi bi-trash" aria-hidden="true"></span></button>')
+  total = $('<td class="centrer fixer"></td>').append(Math.round(item.quantite * item.prix * 100) / 100);
+  trash = $('<td class="onSide"></td>')
+      .append('<button type="button" class="btn btn-danger" onClick="remove_item([' + item.id + '])">Retirer <span class="bi bi-trash" aria-hidden="true"></span></button>')
 
-
-  return $('<tr></tr>').append(nom).append(prix).append(qte).append(total).append(trash);
+// return $('#plein_panier').append(code);
+   return $('<tr></tr>').append(nom).append(prix).append(qte).append(total).append(trash);
 }
 
 // function add_item(id_item) {
@@ -244,14 +282,26 @@ function chargerpanier(){
             $('#body_table').empty();
             console.log(result);
             if (result.items.length == 0) {
-                $('#empty_panier').append(`<h1>Votre panier</h1>
-                <p>Il semblerait que votre panier soit vide !</p>
-                <button onclick="chargerproduits()"><i class="bi bi-arrow-left-short"/i> Retourner a la boutique </button>`)
-                $('#liste_panier').addClass('hidden');
-                $('#buttonConfirmer').addClass('hidden');
-                $('#prixTOT').text('0');
+                document.getElementById("buttonConfirmer").disabled = true;
+                document.getElementById("empty_panier").style.display = "true";
+                document.getElementById("liste_panier").style.display = "none";
+                document.getElementById("empty_panier").innerHTML = `<h4>Il semblerait que votre panier soit vide</h4> 
+                <a href="#/produit"><i class="bi bi-arrow-left-short"/i> Retourner a la boutique </a>`;
+                // emptyBody = $(`<h1>Votre panier</h1>
+                // <p>Il semblerait que votre panier soit vide !</p>
+                // <button onclick="chargerproduits()"><i class="bi bi-arrow-left-short"/i> Retourner a la boutique </button>`);
+                // $('#body_table').addClass('hidden');
+                // $('#empty_panier').append(emptyBody);
+
+                // $('#list_panier').append(`<h1>Votre panier</h1>
+                // <p>Il semblerait que votre panier soit vide !</p>
+                // <button onclick="chargerproduits()"><i class="bi bi-arrow-left-short"/i> Retourner a la boutique </button>`)
+                // $('#table_panier').addClass('hidden');
+                // $('#buttonConfirmation').addClass('hidden');
+                // $('#prixTOT').text('0');
             }
             $.each(result.items, function (key, value) {
+                document.getElementById("empty_panier").style.display = "none";
                 item = load_panier(value);
                 $('#body_table').append(item);
                 chargerTotal();
@@ -365,7 +415,7 @@ $.ajax({
     },
     statusCode: {
         400: function () {
-            $('#limiteInventaire').modal('show');
+            $('#limiteInventaire');
         }
     }
 });

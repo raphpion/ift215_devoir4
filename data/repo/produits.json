@@ -44,7 +44,7 @@
         "nom": "concombre",
         "description": "pas un jouet",
         "prix": 2.23,
-    "qte_inventaire": 48,
+        "qte_inventaire": 48,
         "categorie": {
             "id": 1,
             "nom": "Prunier",
