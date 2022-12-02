@@ -7,12 +7,10 @@
 }
 
 footer {
-  border: 2px solid black;
-  text-align: center;
-  width: 500px;
-  margin: auto;
-  padding: 20px;
-  clear: both;
+  background-color: #e1e1e1;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  font-weight: bold;
 }
 
 nav {
@@ -60,6 +58,16 @@ nav {
 .deroulant:hover .btn-deroulant {
   background-color: var(--fond-menu-inverse);
   color: var(--couleur-menu-inverse);
+}
+
+section.inner {
+  padding: 20px 0 0;
+  max-width: 1120px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  position: relative;
 }
 
 .sous-menu {
@@ -214,7 +222,7 @@ form .group select {
 }
 
 #corps-principal {
-  margin-bottom: 25px;
+  padding: 60px 0;
 }
 
 @media screen and (max-width: 900px) {
@@ -272,4 +280,38 @@ tr:nth-child(odd) {
 
 .fixer {
   width: 140px;
+}
+
+input[type=submit] {
+  padding:5px 15px; 
+  background:rgb(255, 255, 255); 
+  border: 0;
+  cursor:pointer;
+  -webkit-border-radius: 5px;
+  border-radius: 50%; 
+}
+
+input[type=button] {
+  padding:5px 15px; 
+  background:#0b5ed7;
+  color: white;
+  border:0 none;
+  cursor:pointer;
+  border-radius: 50%;
+}
+
+#formulaire-inscription > div.form-control,
+#formulaire-connexion > div.form-control {
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
+.navbar .nav-logo {
+  width: 32px;
+  padding-bottom: 3px;
+  margin-right: 8px;
+}
+
+#nav-auth {
+  gap: 12px;
 }
