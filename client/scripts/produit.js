@@ -2,6 +2,9 @@
  * @returns {number | boolean} The product ID, or false.
  */
 
+ let ID_CLIENT = 1;
+ let TOKEN_CLIENT = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZENsaWVudCI6MSwicm9sZSI6ImNsaWVudCIsImlhdCI6MTYzNjc1MjI1MywiZXhwIjoxODM2NzUyMjUzfQ.qMcKC0NeuVseNSeGtyaxUvadutNAfzxlhL5LYPsRB8k";
+
 
 function getIdProduit() {
   const params = window.location.hash.split("?")[1];
@@ -24,13 +27,12 @@ function chargerproduit() {
       url: `/produits/${idProduit}`,
       success: function (result) {
         console.log(result);
+
         item = inner_item(result);
+        dummy = item_to_html(result);
         $("#list_items").append(item);
-        $(".caca").append(`
-        <div class="container mb-6 ma-classe-speciale-je-suis-special">
-          <p>asdasdasd</p>
-        </div>`
-        );
+
+
       },
     });
   } else {
@@ -48,36 +50,80 @@ function chargerproduit() {
   }
 }
 
-function incrementValue(e) {
-  e.preventDefault();
-  var fieldName = $(e.target).data('field');
-  var parent = $(e.target).closest('div');
-  var currentVal = parseInt(parent.find('input[name=' + fieldName + ']').val(), 10);
 
-  if (!isNaN(currentVal)) {
-      parent.find('input[name=' + fieldName + ']').val(currentVal + 1);
-  } else {
-      parent.find('input[name=' + fieldName + ']').val(0);
-  }
+function remove_item(item) {
+  let id_item = item[0];
+
+  $.ajax({
+      url: "/clients/"+ID_CLIENT+"/panier/" + id_item,
+      method:"DELETE",
+      beforeSend: function (xhr){
+          xhr.setRequestHeader('Authorization', "Basic "+ TOKEN_CLIENT);
+      },
+      success: function( result ) {
+          chargerpanier();
+          $('#successSuppressionItemModal').modal('toggle');
+      },
+      error : function (result){
+          $('#erreurSuppressionItemModal').modal('toggle');
+      }
+  });
 }
 
+//Ajouter counter au panier
+function ajouterTotalItem(item){   
+  var value = parseInt(document.getElementById('number').value, 10);
+  value = isNaN(value) ? 0 : value;     
+  $.ajax({
+      url:"/clients/"+ID_CLIENT+"/panier/" + item,
+      method:"PUT",
+      data: {'quantite': value},
+      beforeSend: function (xhr){
+          xhr.setRequestHeader('Authorization', "Basic "+ TOKEN_CLIENT);
+      },
+      success: function( result ) {
 
+          chargerpanier();
+      }});
+}
+
+//incrementer le counter d'un produit singulier avec +
+function incrementValue()
+{
+    var value = parseInt(document.getElementById('number').value, 10);
+    value = isNaN(value) ? 0 : value;
+    value++;
+    document.getElementById('number').value = value;
+}
+
+//Desincrementer le counter d'un produit singulier avec -
+function deIncrementValue()
+{
+    var value = parseInt(document.getElementById('number').value, 10);
+    value = isNaN(value) ? 0 : value;
+    if(value > 0)
+      value--;
+    document.getElementById('number').value = value;
+}
+
+//Process et affichage d'un produit singulier
 function inner_item(item) {
-  var quantity = 0;
+
   item_panier = $("<div></div>")
     .addClass("row")
     .append('<div class="col">' + '<img alt class="" src="../images/dumdum.png" > '+ '<h4> Description </h4>' + item.description + "</div>")
 
-    .append('<div class="col">' + '<h3>' + item.nom + '</h3>' + '<h3>' + item.prix +  '$</h3>' +  '<h4> Quantité'+  + '</h4>' +
-    '<input type="button" value="-" class="button-minus border rounded-circle  icon-shape icon-sm mx-1 " data-field="quantity"></input>' +
-    '<input type="number" step="1" max="10" value="1" name="quantity" class="quantity-field border-0 text-center w-25"></input> ' +
-    '<input type="button" value="+" class="button-plus border rounded-circle icon-shape icon-sm " data-field="quantity"></input>' +
+    .append('<div class="col">' + '<h3>' + item.nom + '</h3>' + '<h3>' + item.prix +  '$</h3>' +  '<p> Quantité ' + 
+    '<input type="button" onclick="deIncrementValue()" value="-" />' + '<input type="submit" id="number" value="0"/>' +  '<input type="button" onclick="incrementValue()" value="+" /> </p>' +
+    `<a class="btn btn-primary" onclick="ajouterTotalItem(`+ item.id + `)"> Ajouter au panier </a>` +
     
     "</div>"
     );
 
   return item_panier.append();
 }
+
+
 
 function item_to_html(item) {
   item_card = $("<div></div>").addClass("card mb-4 rounded-3 shadow-sm");
