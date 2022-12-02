@@ -1,11 +1,9 @@
+let ID_CLIENT = 1;
+ let TOKEN_CLIENT = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZENsaWVudCI6MSwicm9sZSI6ImNsaWVudCIsImlhdCI6MTYzNjc1MjI1MywiZXhwIjoxODM2NzUyMjUzfQ.qMcKC0NeuVseNSeGtyaxUvadutNAfzxlhL5LYPsRB8k";
+
 /**
  * @returns {number | boolean} The product ID, or false.
  */
-
- let ID_CLIENT = 1;
- let TOKEN_CLIENT = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZENsaWVudCI6MSwicm9sZSI6ImNsaWVudCIsImlhdCI6MTYzNjc1MjI1MywiZXhwIjoxODM2NzUyMjUzfQ.qMcKC0NeuVseNSeGtyaxUvadutNAfzxlhL5LYPsRB8k";
-
-
 function getIdProduit() {
   const params = window.location.hash.split("?")[1];
   if (!params) return false;
@@ -18,6 +16,7 @@ function getIdProduit() {
   return idValue;
 }
 //todo gestion derreur
+
 function chargerproduit() {
   const idProduit = getIdProduit();
 

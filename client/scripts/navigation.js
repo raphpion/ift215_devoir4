@@ -5,21 +5,58 @@ document.addEventListener(
   'DOMContentLoaded',
   function () {
     hashHandler();
+    remplirNavigation();
   },
   false
 );
+
+/**
+ * Fonction qui va afficher les éléments propres à la session dans la barre de navigation.
+ */
+function remplirNavigation() {
+  const session = SessionManager.getSession();
+  if (session) {
+    $('#nav-auth').html(`<li class="nav-item">
+      <button id="btn-logout" class="btn btn-outline-danger" onClick="gererDeconnexion()">Déconnexion</button>
+    </li>
+  `);
+  } else {
+    $('#nav-auth').html(`<li class="nav-item">
+      <a class="btn btn-outline-primary" href="#/inscription">Inscription</a>
+    </li>
+    <li class="nav-item">
+      <a class="btn btn-success" href="#/connexion">Connexion</a>
+    </li>`);
+  }
+}
+
+/**
+ * Fonction chargée de déconnecter un utilisateur de sa session courante.
+ */
+function gererDeconnexion() {
+  const session = SessionManager.getSession();
+  if (!session) return;
+
+  $.ajax({
+    url: `/connexion/${session.idClient}`,
+    type: 'delete',
+    success: response => {
+      console.log(response);
+    },
+  });
+
+  SessionManager.clearSession();
+  remplirNavigation();
+}
 
 /**
  * Fonction qui va provoquer l'appel de la fonction racine du script propre à la page qui vient d'être chargée.
  */
  function chargerSousContenu() {
   let nom = 'charger' + location.hash.replace('#/', '');
-  let nomClean = nom.split('?')[0];
-
-  console.log(`les parametres sont: ${nom.split('?')[1]}`);
-
-  console.log('Appel de la fonction: ' + nomClean);
-  window[nomClean]();
+  nom = nom.split('?')[0];
+  if (!window[nom]) return;
+  window[nom]();
 }
 
 /**
@@ -40,15 +77,12 @@ function remplacerContenu(idElement, contenu) {
 async function hashHandler() {
   //La page voulu apparaitra dans le hash (ce qui suit le # dans la barre d'adresse
   let hash = location.hash;
-  console.log('Le hash est: ' + hash);
 
   if (!hash.includes('/')) {
-    console.log('Le hash est une ancre, ne rien faire');
     return;
   }
   //On crée le lien vers le contenu qu'on veut charger
   let addr = '/html' + hash.replace('#', '');
-  console.log("L'adresse du contenu est: " + addr);
   try {
     //On récupère la page sur le serveur
     let reponse = await fetch(addr);

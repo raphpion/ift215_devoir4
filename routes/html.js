@@ -17,17 +17,24 @@ router.get('/inscription', function (req, res) {
   res.sendFile(path.join(__dirname, '/../client/inscription.html'));
 });
 
+router.get('/connexion', function (req, res) {
+  res.sendFile(path.join(__dirname, '/../client/connexion.html'));
+});
+
 router.get('/points_de_vente', function (req, res) {
   res.sendFile(path.join(__dirname, '/../client/points_de_vente.html'));
 });
 
-// ajout
 router.get('/produit', function (req, res) {
   res.sendFile(path.join(__dirname, '/../client/produit.html'));
 });
 
 router.get('/panier', function (req, res) {
   res.sendFile(path.join(__dirname, '/../client/panier.html'));
+});
+
+router.get('/faq', function (req, res) {
+  res.sendFile(path.join(__dirname, '/../client/faq.html'));
 });
 
 module.exports = router;
