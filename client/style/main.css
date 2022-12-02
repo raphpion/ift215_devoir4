@@ -233,67 +233,9 @@ form .group select {
   text-align: center;
 }
 
-#quantite {
-  text-indent: 10px;
-}
-
-#categorie {
-  text-indent: 10px;
-  margin-bottom: 15px;
-}
-
-#description {
-  margin: 10px;
-  margin-bottom: 20px;
-}
-
 .center {
   text-align: center;
   width: 100%;
-}
-
-.name {
-  width: 60%;
-}
-
-
-
-
-.confirmation_commande {
-  text-align: center;
-}
-
-.cout_commande {
-  text-align: right;
-}
-
-.prix {
-  text-align: end;
-  padding-left: 150px;
-}
-
-.bas_page {
-  display: inline-block;
-  float: right;
-}
-
-dl {
-  display: inline-block;
-}
-
-.prix_total {
-  text-align: end;
-  padding-left: 100px;
-  font-size: 20px;
-}
-
-.date {
-  text-align: end;
-  padding-left: 100px;
-}
-
-.total {
-  font-size: 20px;
 }
 
 .prixTot {
@@ -307,22 +249,6 @@ dl {
   margin-top: 30px;
 }
 
-.button {
-  background-color: #666DF2;
-  width: 500px;
-  height: 200px;
-  margin-left: 100px;
-  margin-bottom: 40px;
-  cursor: pointer;
-  font-size: 30px;
-  text-align: center;
-}
-
-.button_retour {
-  margin-left: 40px;
-  margin-top: 30px;
-}
-
 th {
   background-color: white !important;
 }
@@ -333,22 +259,6 @@ tr:nth-child(odd) {
 
 .panier_titre{
   margin-left: 6%;
-}
-
-td>#row_panier {
-  flex-shrink: 0;
-  width:initial !important;
-  max-width: 100%;
-  padding-right: calc(var(--bs-gutter-x) * .5);
-  padding-left: calc(var(--bs-gutter-x) * .5);
-  margin-top: var(--bs-gutter-y);
-}
-
-.type_row {
-  max-width: 100%;
-  padding-right: calc(var(--bs-gutter-x) * .5);
-  padding-left: calc(var(--bs-gutter-x) * .5);
-  margin-top: var(--bs-gutter-y);
 }
 
 #empty_panier {

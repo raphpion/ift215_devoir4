@@ -1,251 +1,22 @@
-// const { put } = require("../../routes/html");
-
-// let ID_CLIENT = 1;
-// let TOKEN_CLIENT =
-//   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZENsaWVudCI6MSwicm9sZSI6ImNsaWVudCIsImlhdCI6MTYzNjc1MjI1MywiZXhwIjoxODM2NzUyMjUzfQ.qMcKC0NeuVseNSeGtyaxUvadutNAfzxlhL5LYPsRB8k';
-
-// $(function () {
-//   console.log('ift215');
-// });
-
-// function chargerproduits(){
-//   let urlToCall = "/produits";
-//   let text = $('#search_produit').val();
-//   if (text) {
-//       urlToCall = "/produits?nom=" + text;
-//   }
-//   $('#list_items').empty();
-//   $.ajax({
-//       url: urlToCall,
-//       success: function( result ) {
-//           if (result.length == 0) {
-//               $('#list_items').append('<h4 class="text-center">Aucun résultat trouvé</h4>');
-//           }
-//           else {
-//               $.each(result, function (key, value) {
-//                   item = item_to_html(value);
-//                   $('#list_items').append(item);
-//               });
-//           }
-//           set_panier();
-//       }
-//   });
-// }
-
-// // function chargerproduit() {
-// //   $.ajax({
-// //     url: '/produits',
-// //     success: function (result) {
-// //       console.log(result);
-// //       $.each(result, function (key, value) {
-// //         item = item_to_html(value);
-// //         $('#list_items').append(item);
-// //       });
-// //     },
-// //   });
-// // }
-
-// function item_to_html(item) {
-//   item_card = $('<div></div>').addClass('card mb-4 rounded-3 shadow-sm');
-//   item_head = $('<div></div>')
-//     .addClass('card-header py-3')
-//     .append('<h4 class="my-0 fw-normal">' + item.nom + '</h4>');
-//   item_detail = $('<ul></ul>')
-//     .addClass('list-unstyled mt-3 mb-4')
-//     .append('<li id="quantite">Quantite : ' + item.qte_inventaire + '</li>')
-//     .append('<li id="categorie">Categorie : ' + item.categorie.nom + '</li>')
-//     .append('<li id="description">Description : ' + item.description + '</li>');
-//   item_body = $('<div></div>')
-//     .addClass('card-body')
-//     .append(' <h1 class="card-title text-center"> $' + item.prix + '</h1>');
-//   item_footer = $('<p></p>')
-//     .addClass('w-100 display-6 text-center')
-//     .append(
-//       '<button type="button" class="btn btn-danger" onclick="add_item(' +
-//         item.id +
-//         ')">' +
-//         ' <i class="fa-solid fa-trash-can-arrow-up"></i> </button>'
-//     );
-//   item_card.append(item_head).append(item_body).append(item_detail).append(item_footer);
-//   return $('<div></div>').addClass('col-md-3').append(item_card);
-// }
-
-function load_panier(item) {
-  //image = $('<img src="../images/' + item.nomProduit + '.png" style = "border-right: 2px solid #666DF2"/>'); append(image)
-//   code = $(`<div class="row" id="liste_panier">
-//   <i className="bi bi-trash"></i>
-//   <table class="table table-panier" id="table_panier">
-//       <thead>
-//           <tr>
-//               <th>Nom de l'article</th>
-//               <th>Prix à l'unité</th>
-//               <th>Quantité</th>
-//               <th>Total</th>
-//               <th></th>
-//           </tr>
-//       </thead>
-
-//       <tbody id="body_table" >
-//       <td>`+item.nomProduit+`</td>
-//       <td>`+item.prix+`</td>
-//       <td> 
-//         <div class="row">
-//             <button class="btn btn-primary rounded col" id="bouton_panier" onclick="ajouterItem(`+ item.id + `)"><i class="bi bi-plus-circle-fill"></i></button>
-//             <p class="col center">` + item.quantite + `</p>
-//             <button class="btn btn-primary rounded col" id="bouton_panier" onclick="enleverItem(`+ item.id + `)"><i class="bi bi-dash-circle-fill"></i></button>             
-//         </div> 
-//         </td>
-//         <td>`+ (Math.round(item.quantite * item.prix * 100) / 100) +`</td>
-//         <td><button type="button" class="btn" onClick="remove_item([' + item.id + '])"><span class="bi bi-trash" aria-hidden="true"></span></button></td>
-//       </tbody>
-//   </table>
-// </div>
-// <div>
-//   <h2 class="prixTot" id="prixTOT"></h2> <!-- prix total -->
-// </div>
-// <div class="buttonConfirmation">
-//   <button type="button" class="btn btn-primary" id="buttonConfirmer" onclick="confirmation()">Confirmer la commande</button>
-
-// </div>`);
-
-//<i class="bi bi-plus-circle-fill"></i>
-
-nom = $('<td></td>').append(item.nomProduit);
-  prix = $('<td></td>').append(item.prix);
-  qte = $(`<td> <div class="row">
-  <button class="btn btn-primary rounded col" id="bouton_panier" onclick="enleverItem(`+ item.id + `)"><i class="bi bi-dash-lg"></i></button>             
-  <p class="col center">` + item.quantite + `</p>
-  <button class="btn btn-primary rounded col" id="bouton_panier" onclick="ajouterItem(`+ item.id + `)"><i class="bi bi-plus-lg"></i></button>
-  </div> </td>`);
-  total = $('<td class="centrer fixer"></td>').append(Math.round(item.quantite * item.prix * 100) / 100);
-  trash = $('<td class="onSide"></td>')
-      .append('<button type="button" class="btn btn-danger" onClick="remove_item([' + item.id + '])">Retirer <span class="bi bi-trash" aria-hidden="true"></span></button>')
-
-// return $('#plein_panier').append(code);
-   return $('<tr></tr>').append(nom).append(prix).append(qte).append(total).append(trash);
-}
-
-// function add_item(id_item) {
-//   $.ajax({
-//     url: '/clients/' + ID_CLIENT + '/panier',
-//     method: 'POST',
-//     data: { idProduit: id_item, quantite: 1 },
-//     beforeSend: function (xhr) {
-//       xhr.setRequestHeader('Authorization', 'Basic ' + TOKEN_CLIENT);
-//     },
-//     success: function (result) {
-//       $('#item_counter').text(result.items.length);
-//     },
-//   });
-// }
-
-// function chargerpanier(){
-//   $.ajax({
-//       url: "/clients/"+ID_CLIENT+"/panier",
-//       method:"GET",
-//       beforeSend: function (xhr){
-//           xhr.setRequestHeader('Authorization', "Basic "+ TOKEN_CLIENT);
-//       },
-//       success: function( result ) {
-//           $('#body_table').empty();
-//           console.log(result);
-//           if (result.items.length == 0) {
-//               $('#table_panier').addClass('hidden');
-//               $('#buttonConfirmer').addClass('hidden');
-//               $('#liste_panier').append('<h4 class="text-center">Votre panier est présentement vide</h4>');
-//               $('#prixTOT').text('');
-//           }
-//           $.each(result.items, function (key, value) {
-//               item = load_panier(value);
-//               $('#body_table').append(item);
-//               chargerTotal();
-//           });
-//       }
-//   });
-// }
-
-// function load_panier(item) {
-
-
-//   image = $('<img src="../images/' + item.nomProduit + '.png" style = "border-right: 2px solid #666DF2"/>');
-//   nom = $('<td></td>').append(item.nomProduit);
-//   prix = $('<td></td>').append(item.prix);
-//   qte = $('<td><button onclick="ajouterItem('+ item.id + ')">+</button><button onclick="enleverItem('+ item.id + ')">-</button>             </td>').append(item.quantite);
-//   total = $('<td></td>').append(Math.round(item.quantite * item.prix * 100) / 100);
-//   trash = $('<td></td>')
-//       .append('<button type="button" class="btn" onClick="setItemGlobal([' + item.id + '])"><span class="bi bi-trash" aria-hidden="true"></span></button>')
-
-
-//   return $('<tr style = "border: 4px solid #666DF2"></tr>').append(image).append(nom).append(prix).append(qte).append(total).append(trash);
-// }
-
-// function set_panier() {
-//   $.ajax({
-//       url: "/clients/"+ID_CLIENT+"/panier",
-//       method:"GET",
-//       beforeSend: function (xhr){
-//           xhr.setRequestHeader('Authorization', "Basic "+ TOKEN_CLIENT);
-//       },
-//       success: function( result ) {
-//           $('#item_counter').text(result.items.length);
-//       }
-//   });
-// }
-
-// function panier_to_html(item) {
-//   item_panier = $('<div></div>')
-//     .addClass('row')
-//     .append('<div class="col name"><p id="name">' + item.nomProduit + '</p></div>')
-//     .append('<div class="col desc">' + item.prix + '</div>')
-//     .append('<div class="col desc">' + item.quantite + '</div')
-//     .append('<div class="col desc">' + (item.prix * item.quantite).toFixed(2) + '</div>')
-//     .append(`<div class="col desc">
-//     <button type="button" class="btn btn-danger">
-//     <p>Retirer</p>
-//   </button>
-//   </div>`);
-//   return item_panier.append('<hr>');
-// }
-
-
-// function chargerTotal(){
-//   $.ajax({
-//       url: "/clients/"+ID_CLIENT+"/panier",
-//       method:"GET",
-//       beforeSend: function (xhr){
-//           xhr.setRequestHeader('Authorization', "Basic "+ TOKEN_CLIENT);
-//       },
-//       success: function( result){
-//           $('#prixTOT').text('Total de la commande : '+ Math.round(result.valeur * 100) / 100 + ' $');
-//           // $('#buttonConfirmer').text('Confirmer la commande');
-//           for( let i in result.items){
-//               item = item_to_html(result.items[i])
-//               $('#list_panier').append(item);
-//           }
-//       }
-//   });
-// }
-
-// function ajouterItem(item) {
-//   $.ajax({
-//     url:'/clients/' + ID_CLIENT + '/panier' + item,
-//     method: "PUT",
-//     data: {quantite : 1},
-//     beforeSend: function (xhr) {
-//       xhr.setRequestHeader('Authorisation', 'Basic' + TOKEN_CLIENT);
-//     },
-//     success: function(result) {
-//       chargerpanier
-//     },
-//   });
-// }
-
-//const {validate} = require("express-validation");
-//const auth = require("../../middleware/auth");
-//const {gClients} = require("../../util/gestionnaires");
 let ID_CLIENT = 1;
 let TOKEN_CLIENT = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZENsaWVudCI6MSwicm9sZSI6ImNsaWVudCIsImlhdCI6MTYzNjc1MjI1MywiZXhwIjoxODM2NzUyMjUzfQ.qMcKC0NeuVseNSeGtyaxUvadutNAfzxlhL5LYPsRB8k";
 let itemGlobal;
+
+
+function load_panier(item) {
+    nom = $('<td></td>').append(item.nomProduit);
+    prix = $('<td></td>').append(item.prix);
+    qte = $(`<td> <div class="row">
+    <button class="btn btn-primary rounded col" id="bouton_panier" onclick="enleverItem(`+ item.id + `)"><i class="bi bi-dash-lg"></i></button>             
+    <p class="col center">` + item.quantite + `</p>
+    <button class="btn btn-primary rounded col" id="bouton_panier" onclick="ajouterItem(`+ item.id + `)"><i class="bi bi-plus-lg"></i></button>
+    </div> </td>`);
+    total = $('<td class="centrer fixer"></td>').append(Math.round(item.quantite * item.prix * 100) / 100);
+    trash = $('<td class="onSide"></td>')
+      .append('<button type="button" class="btn btn-danger" onClick="remove_item([' + item.id + '])">Retirer <span class="bi bi-trash" aria-hidden="true"></span></button>')
+
+   return $('<tr></tr>').append(nom).append(prix).append(qte).append(total).append(trash);
+}
 
 function chargerproduits(){
     let urlToCall = "/produits";
@@ -285,20 +56,9 @@ function chargerpanier(){
                 document.getElementById("buttonConfirmer").disabled = true;
                 document.getElementById("empty_panier").style.display = "true";
                 document.getElementById("liste_panier").style.display = "none";
+                document.getElementById("basicRetour").style.display = "none";
                 document.getElementById("empty_panier").innerHTML = `<h4>Il semblerait que votre panier soit vide</h4> 
                 <a href="#/produit"><i class="bi bi-arrow-left-short"/i> Retourner a la boutique </a>`;
-                // emptyBody = $(`<h1>Votre panier</h1>
-                // <p>Il semblerait que votre panier soit vide !</p>
-                // <button onclick="chargerproduits()"><i class="bi bi-arrow-left-short"/i> Retourner a la boutique </button>`);
-                // $('#body_table').addClass('hidden');
-                // $('#empty_panier').append(emptyBody);
-
-                // $('#list_panier').append(`<h1>Votre panier</h1>
-                // <p>Il semblerait que votre panier soit vide !</p>
-                // <button onclick="chargerproduits()"><i class="bi bi-arrow-left-short"/i> Retourner a la boutique </button>`)
-                // $('#table_panier').addClass('hidden');
-                // $('#buttonConfirmation').addClass('hidden');
-                // $('#prixTOT').text('0');
             }
             $.each(result.items, function (key, value) {
                 document.getElementById("empty_panier").style.display = "none";
