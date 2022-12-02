@@ -12,10 +12,14 @@ document.addEventListener(
 /**
  * Fonction qui va provoquer l'appel de la fonction racine du script propre à la page qui vient d'être chargée.
  */
-function chargerSousContenu() {
+ function chargerSousContenu() {
   let nom = 'charger' + location.hash.replace('#/', '');
-  console.log('Appel de la fonction: ' + nom);
-  window[nom]();
+  let nomClean = nom.split('?')[0];
+
+  console.log(`les parametres sont: ${nom.split('?')[1]}`);
+
+  console.log('Appel de la fonction: ' + nomClean);
+  window[nomClean]();
 }
 
 /**

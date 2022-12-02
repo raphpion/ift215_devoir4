@@ -62,6 +62,16 @@ nav {
   color: var(--couleur-menu-inverse);
 }
 
+section.inner {
+  padding: 20px 0 0;
+  max-width: 1120px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  position: relative;
+}
+
 .sous-menu {
   display: none;
   position: absolute;
@@ -250,4 +260,14 @@ form .group select {
 .center {
   text-align: center;
   width: 100%;
+}
+
+.caca {
+  float: none;
+  color: var(--couleur-menu);
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+  transition: color 0.5s, background-color 0.5s;
 }
