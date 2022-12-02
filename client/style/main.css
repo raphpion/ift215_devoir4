@@ -265,10 +265,10 @@ form .group select {
 input[type=submit] {
   padding:5px 15px; 
   background:rgb(255, 255, 255); 
-  border: 1;
+  border: 0;
   cursor:pointer;
   -webkit-border-radius: 5px;
-  border-radius: 5px; 
+  border-radius: 50%; 
 }
 
 input[type=button] {
@@ -279,3 +279,5 @@ input[type=button] {
   cursor:pointer;
   border-radius: 50%;
 }
+
+
