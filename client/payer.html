@@ -1,0 +1,117 @@
+<div class="row" style="margin-top: 2%;">
+    <div class="col payerBody">
+        <h4><b>Passer à la caisse</b></h4>
+        <br/>
+        <div id="informations">
+            <h5><b>Détails de la facture</b></h5>
+            <h6><b>Nom complet</b></h6>
+            <input type="text" class="form-control mb-2" id="name">
+            <h6><b>Adresse courriel</b></h6>
+            <input type="text" class="form-control mb-2" id="adresseCourriel">
+            <h6><b>Adresse Postale</b></h6>
+            <input type="text" class="form-control mb-2" id="adressePostale">
+            <div>
+                <h6><b>Pays&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Code postal</b></h6>
+            </div>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" id="pays">
+                <input type="text" class="form-control" id="codePostal">
+            </div>
+        </div>
+        <div id="paiement">
+            <br/>
+            <h5><b>Mode de paiement</b></h5>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                        <input type="radio" aria-label="Radio button for following text">
+                        <label for="paypal" style="font-weight:bold;">&emsp;Carte de crédit</label>
+                    </div>
+                </div>
+            </div>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                        <input type="radio" id="paypal" aria-label="Radio button for following text">
+                        <label for="paypal" style="font-weight:bold;">&emsp;Paypal</label>
+                    </div>
+                </div>
+            </div>
+    
+            <div id="credit">
+                <h6><b>Numéro sur la carte</b></h6>
+                <input type="text" class="form-control mb-2" id="numeroCarte">
+                <div>
+                    <h6><b>Date d'expiration&emsp;&emsp;&emsp;Code de sécurité</b></h6>
+                </div>
+                <div class="input-group mb-2">
+                    <input type="text" class="date form-control" placeholder="mm" aria-label="mois" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <span class="input-group-text" id="basic-addon2">/</span>
+                    </div>
+                    <input type="text" class="date form-control" placeholder="aa" aria-label="annee" aria-describedby="basic-addon2">
+                    <input type="text" class="codeSecurite form-control" id="codeSecurite" placeholder="Trois chiffres">
+                </div>
+            </div>
+            
+            <div id="paypal">
+    
+            </div>
+    
+            <p style="font-size:10px"><b>En cliquant sur ce bouton, vous acceptez nos <a href="https://www.canada.ca/fr/ministere-defense-nationale/services/termes-conditions.html">Termes et conditions.</a></b></p>
+        </div>
+    
+        <button type="button" class="btn btn-primary">PLACE LA COMMANDE</button> 
+    </div>
+    
+    <div class="col" style="margin-right: 10%;">
+        <fieldset id="bordure">
+            <h6 style="margin-left: 5%;"><i class="bi bi-cart-check-fill" style="font-size: 1rem;"></i>&emsp; Résumé de votre commande [<a href="#/panier">modifier</a>]</h6>
+            <div class="row" style="text-align: right;">
+                <div id="labelMontants1" class="col">
+                    <div>
+                        <h5><b>Sous-total</b></h5>
+                        <!-- <div class="input-group">
+                            <div class="input-group-prepend" style="display: flex; justify-content: flex-end;">
+                                <div class="input-group-text">
+                                    <input type="radio" aria-label="Radio button for following text">
+                                    <label for="paypal" style="font-weight:bold;">&emsp;Livraison standard  10.00$</label>
+                                </div>
+                            </div>
+                        </div>
+                        <p style="font-size:10px">Expédition en 3 à 5 jours ouvrables</p>
+
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <input type="radio" aria-label="Radio button for following text">
+                                    <label for="paypal" style="font-weight:bold;">&emsp;Livraison express   25.00$</label>
+                                </div>
+                            </div>
+                        </div>
+                        <p style="font-size:10px">Expédition en 24h</p> -->
+
+                        <h5><b>Taxes</b></h5>
+                    </div>
+                </div>
+
+                <div id="montants" class="col">
+                    <h5><b>374.99$</b></h5>
+                    <h5><b>61.50$</b></h5>
+                </div>
+            </div>
+
+            <div class="row" style="border-bottom: 2px solid #000; margin: 2%;"></div>
+
+            <div class="row" style="text-align: right;">
+                <div id="labelMontants2" class="col">
+                    <h5><b>Grand total</b></h5>
+                </div>
+
+                <div id="montantTotal" class="col">
+                    <h5><b>436.49$</b></h5>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+</div>
