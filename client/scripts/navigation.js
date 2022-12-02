@@ -15,19 +15,18 @@ document.addEventListener(
  */
 function remplirNavigation() {
   const session = SessionManager.getSession();
-  let navAuth = document.getElementById('nav-auth');
   if (session) {
-    navAuth.innerHTML = `<li class="nav-item">
+    $('#nav-auth').html(`<li class="nav-item">
       <button id="btn-logout" class="btn btn-outline-danger" onClick="gererDeconnexion()">Déconnexion</button>
     </li>
-    `;
+  `);
   } else {
-    navAuth.innerHTML = `<li class="nav-item">
+    $('#nav-auth').html(`<li class="nav-item">
       <a class="btn btn-outline-primary" href="#/inscription">Inscription</a>
     </li>
     <li class="nav-item">
       <a class="btn btn-success" href="#/connexion">Connexion</a>
-    </li>`;
+    </li>`);
   }
 }
 
@@ -35,7 +34,6 @@ function remplirNavigation() {
  * Fonction chargée de déconnecter un utilisateur de sa session courante.
  */
 function gererDeconnexion() {
-  console.log('deconnexion');
   const session = SessionManager.getSession();
   if (!session) return;
 
