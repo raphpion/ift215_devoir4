@@ -1,13 +1,148 @@
-<div class="container">
-  <div class="offset-md-11">
-    <div id="total"></div>
-  </div>
-  <div class="row">
-    <div class="col"><b>Nom</b></div>
-    <div class="col"><b>Prix</b></div>
-    <div class="col"><b>Qty</b></div>
-    <div class="col"><b>Total</b></div>
-    <hr />
-  </div>
-  <div id="list_panier"></div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <h1 class="panier_titre">Votre Panier</h1>
+  <section id="empty_panier">
+  </section>
+<section class="mt-2 container">
+    <div class="row" id="liste_panier">
+        <i className="bi bi-trash"></i>
+        <table class="table table-panier" id="table_panier">
+            <thead>
+                <tr>
+                    <th>Nom de l'article</th>
+                    <th>Prix à l'unité</th>
+                    <th>Quantité</th>
+                    <th>Total</th>
+                    <th></th>
+                </tr>
+            </thead>
+
+            <tbody id="body_table" >
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <h2 class="prixTot" id="prixTOT"></h2> <!-- prix total -->
+    </div>
+    <div class="buttonConfirmation">
+        <button type="button" class="btn btn-primary" id="buttonConfirmer" onclick="confirmation()">Confirmer la commande</button>
+
+    </div>
+</section>
+</body>
+</html> 
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<section class="mt-2 container">
+    <div class="row" id="liste_panier">
+        <i className="bi bi-trash"></i>
+        <table class="table" id="table_panier">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Nom</th>
+                    <th>Prix</th>
+                    <th>Qte</th>
+                    <th>Total</th>
+                    <th></th>
+                </tr>
+            </thead>
+
+            <tbody id="body_table" >
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <h2 class="prixTot" id="prixTOT"></h2> <-- prix total -->
+    <!-- </div>
+    <div class="buttonConfirmation">
+        <button type="button" class="btn btn-secondary" id="buttonConfirmer" onclick="confirmation()">Confirmer la commande</button>
+
+    </div>
+</section>
+
+Pop up quand on veut supprimer un item du panier
+<div class="modal" tabindex="-1" role="dialog" id="supprimerItemModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Supprimer l'item</h5>
+                <button type="button" data-bs-dismiss="modal" aria-label="Close" style="border: none !important">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Êtes-vous certain de vouloir supprimer cet item du panier?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" onclick="$('#supprimerItemModal').modal('toggle'); remove_item(itemGlobal)">Confirmer</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+            </div>
+        </div>
+    </div>
 </div>
+
+<--Pop up quand l'item est bien supprimé--
+<div class="modal" tabindex="-1" role="dialog" id="successSuppressionItemModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Item supprimé avec succès!</h5>
+                <button type="button" data-bs-dismiss="modal" aria-label="Close" style="border: none !important">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Ok</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+--Pop up quand l'item n'est pas supprimé--
+<div class="modal" tabindex="-1" role="dialog" id="erreurSuppressionItemModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">L'item n'a pas été supprimé du panier</h5>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Ok</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+--Pop up quand le produit n'est plus disponible en inventaire--
+<div class="modal" tabindex="-1" role="dialog" id="limiteInventaire">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Erreur</h5>
+                <button type="button" data-bs-dismiss="modal" aria-label="Close" style="border: none !important">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Vous avez atteint la limite de l'inventaire actuel.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Ok</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html> --> 
