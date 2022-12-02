@@ -57,11 +57,12 @@ function chargerpanier(){
                 document.getElementById("empty_panier").style.display = "true";
                 document.getElementById("liste_panier").style.display = "none";
                 document.getElementById("basicRetour").style.display = "none";
+                document.getElementById("prixTOT").style.display = "none";
                 document.getElementById("empty_panier").innerHTML = `<h4>Il semblerait que votre panier soit vide</h4> 
                 <a href="#/produit"><i class="bi bi-arrow-left-short"/i> Retourner a la boutique </a>`;
             }
             $.each(result.items, function (key, value) {
-                document.getElementById("empty_panier").style.display = "none";
+                //document.getElementById("empty_panier").style.display = "none";
                 item = load_panier(value);
                 $('#body_table').append(item);
                 chargerTotal();
@@ -161,25 +162,32 @@ function remove_item(item) {
     });
 }
 
-function ajouterItem(item){
-$.ajax({
-    url:"/clients/"+ID_CLIENT+"/panier/" + item,
-    method:"PUT",
-    data: {'quantite': 1},
-    beforeSend: function (xhr){
-        xhr.setRequestHeader('Authorization', "Basic "+ TOKEN_CLIENT);
-    },
-    success: function( result ) {
+function ajouterItem(item){        
+    $.ajax({
+        url:"/clients/"+ID_CLIENT+"/panier/" + item,
+        method:"PUT",
+        data: {'quantite': 1},
+        beforeSend: function (xhr){
+            xhr.setRequestHeader('Authorization', "Basic "+ TOKEN_CLIENT);
+        },
+        success: function( result ) {
 
-        chargerpanier();
-    },
-    statusCode: {
-        400: function () {
-            $('#limiteInventaire');
-        }
-    }
-});
+            chargerpanier();
+        }});
 }
+
+
+function isItemLeft(item){
+
+    prod = recupereProduit(item)
+    if( prod.qte_inventaire >= 1) {
+        return true;
+    }
+    else {
+        return false;
+}
+}
+
 
 function enleverItem(item){
     getItem(item).then(function(result) {
