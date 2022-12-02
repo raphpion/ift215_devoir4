@@ -41,7 +41,7 @@
                     "nomProduit": "concombre",
                     "descriptionProduit": "pas un jouet",
                     "prix": 2.23,
-                    "quantite": 1
+                    "quantite": 2
                 }
             ]
         },
@@ -74,21 +74,6 @@
         "pays": "Canada",
         "courriel": "qwer@tyu.com",
         "mdp": "$2b$08$SYOkCCz.wRs49Pv89.ohP.e.uoiQGcya7y5Vw9bRCAqmGtyoP6hi2",
-        "panier": {
-            "valeur": 0,
-            "items": []
-        },
-        "historique": []
-    },
-    {
-        "id": 3,
-        "prenom": "Raphaël",
-        "nom": "Pion",
-        "age": 26,
-        "adresse": "968 rue Walsh",
-        "pays": "Canada",
-        "courriel": "raph.pion@gmail.com",
-        "mdp": "$2b$08$kJzHZWtuVpgx5zWhyHaD6ueW/WobiV/Yeoc7Xg3D5xLUWS3jEj3R2",
         "panier": {
             "valeur": 0,
             "items": []

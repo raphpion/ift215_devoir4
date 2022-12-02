@@ -60,6 +60,16 @@ nav {
   color: var(--couleur-menu-inverse);
 }
 
+section.inner {
+  padding: 20px 0 0;
+  max-width: 1120px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  position: relative;
+}
+
 .sous-menu {
   display: none;
   position: absolute;
@@ -250,6 +260,24 @@ form .group select {
   width: 100%;
 }
 
+input[type=submit] {
+  padding:5px 15px; 
+  background:rgb(255, 255, 255); 
+  border: 0;
+  cursor:pointer;
+  -webkit-border-radius: 5px;
+  border-radius: 50%; 
+}
+
+input[type=button] {
+  padding:5px 15px; 
+  background:#0b5ed7;
+  color: white;
+  border:0 none;
+  cursor:pointer;
+  border-radius: 50%;
+}
+
 #formulaire-inscription > div.form-control,
 #formulaire-connexion > div.form-control {
   padding-top: 16px;
@@ -265,3 +293,4 @@ form .group select {
 #nav-auth {
   gap: 12px;
 }
+

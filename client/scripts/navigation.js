@@ -52,10 +52,9 @@ function gererDeconnexion() {
 /**
  * Fonction qui va provoquer l'appel de la fonction racine du script propre à la page qui vient d'être chargée.
  */
-function chargerSousContenu() {
+ function chargerSousContenu() {
   let nom = 'charger' + location.hash.replace('#/', '');
   nom = nom.split('?')[0];
-
   if (!window[nom]) return;
   window[nom]();
 }
