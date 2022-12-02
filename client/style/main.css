@@ -251,3 +251,10 @@ form .group select {
   text-align: center;
   width: 100%;
 }
+
+.status {
+  text-align: center;
+  background-color: aqua;
+  border-radius: 10px;
+  max-width:fit-content !important;
+}
