@@ -63,13 +63,13 @@ function panier_item_to_html(item) {
   prix = $('<td></td>').append(item.prix);
   qte = $(
     `<td> <div class="row">
-    <button class="btn btn-primary rounded col" id="bouton_panier" onclick="enleverItem(` +
+    <button class="btn btn-primary qty-button" id="bouton_panier" onclick="enleverItem(` +
       item.id +
       `)"><i class="bi bi-dash-lg"></i></button>             
     <p class="col center">` +
       item.quantite +
       `</p>
-    <button class="btn btn-primary rounded col" id="bouton_panier" onclick="ajouterItem(` +
+    <button class="btn btn-primary qty-button" id="bouton_panier" onclick="ajouterItem(` +
       item.id +
       `)"><i class="bi bi-plus-lg"></i></button>
     </div> </td>`
@@ -121,7 +121,7 @@ function remove_item(item) {
     },
     success: function (result) {
       $('#panier .alertes').html(`<div class="alert alert-success alert-dismissible fade show" role="alert">
-        <strong>L'objet a bien été retiré !</strong>
+        <strong>L'article a bien été retiré !</strong>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>`);
       chargerpanier();

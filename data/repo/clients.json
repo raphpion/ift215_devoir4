@@ -79,5 +79,37 @@
             "items": []
         },
         "historique": []
+    },
+    {
+        "id": 3,
+        "prenom": "Raphaël",
+        "nom": "Pion",
+        "age": 26,
+        "adresse": "968 rue Walsh",
+        "pays": "Canada",
+        "courriel": "raph.pion@gmail.com",
+        "mdp": "$2b$08$o8V0Vo2T1zmDqE9EYkXxyeHP6pBECIZlhasHN9rKl.yHIIGr4MELS",
+        "panier": {
+            "valeur": 26.990000000000002,
+            "items": [
+                {
+                    "id": 0,
+                    "idProduit": 2,
+                    "nomProduit": "concombre",
+                    "descriptionProduit": "pas un jouet",
+                    "prix": 2.23,
+                    "quantite": 1
+                },
+                {
+                    "id": 1,
+                    "idProduit": 1,
+                    "nomProduit": "Tomate",
+                    "descriptionProduit": "Un poirier est une espèce d'arbre qui offre de bons suppléments",
+                    "prix": 24.76,
+                    "quantite": 1
+                }
+            ]
+        },
+        "historique": []
     }
 ]
