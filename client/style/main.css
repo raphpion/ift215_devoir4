@@ -344,3 +344,33 @@ tr:nth-child(odd) {
   display: block;
   position: relative;
 }
+
+.payerBody {
+  margin: 10%;
+  width: 30%;
+}
+
+.date {
+  max-width: 60px;
+}
+
+.codeSecurite {
+  max-width: 120px;
+}
+
+.sameLine {
+  display: inline-block;
+}
+
+#bordure {
+
+  border: 2px solid #000;
+  border-radius: 20px;
+  padding: 8px;
+}
+
+#montants {
+  text-align: right;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
