@@ -377,3 +377,15 @@ tr:nth-child(odd) {
   align-items: flex-end;
   justify-content: flex-end;
 }
+
+.status {
+  text-align: center;
+  border-radius: 10px;
+  max-width:fit-content !important;
+}
+
+.deleteButton {
+  text-align: right;
+  margin-bottom: 1%;
+  margin-right: 1%;
+}
