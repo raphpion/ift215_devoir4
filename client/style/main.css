@@ -254,7 +254,12 @@ form .group select {
 
 .status {
   text-align: center;
-  background-color: aqua;
   border-radius: 10px;
   max-width:fit-content !important;
+}
+
+.deleteButton {
+  text-align: right;
+  margin-bottom: 1%;
+  margin-right: 1%;
 }
