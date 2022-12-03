@@ -1,7 +1,3 @@
-/**
- * Seems deprecated...
- * @deprecated
- */
 function chargerproduits() {
   let urlToCall = '/produits';
   let text = $('#search_produit').val();

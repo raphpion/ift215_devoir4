@@ -17,11 +17,11 @@ function chargerpanier() {
       // $('#body_table').empty();
 
       if (result.items.length == 0) {
-        $('#panier').html(`<h4>Il semblerait que votre panier soit vide.</h4>`);
+        $('#panier-inner').html(`<h4>Il semblerait que votre panier soit vide.</h4>`);
         return;
       }
 
-      $('#panier').html(`<div class="row" id="liste_panier">
+      $('#panier-inner').html(`<div class="row" id="liste_panier">
         <i className="bi bi-trash"></i>
         <table class="table table-panier" id="table_panier">
           <thead>
@@ -113,12 +113,18 @@ function remove_item(item) {
     beforeSend: function (xhr) {
       xhr.setRequestHeader('Authorization', 'Basic ' + session.token);
     },
-    success: function (result) {
-      chargerpanier();
-      $('#successSuppressionItemModal').modal('toggle');
+    error: (xhr, ajaxOptions, thrownError) => {
+      $('#panier .alertes').html(`<div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>${xhr.responseText}</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>`);
     },
-    error: function (result) {
-      $('#erreurSuppressionItemModal').modal('toggle');
+    success: function (result) {
+      $('#panier .alertes').html(`<div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>L'objet a bien été retiré !</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>`);
+      chargerpanier();
     },
   });
 }
@@ -134,7 +140,17 @@ function ajouterItem(item) {
     beforeSend: function (xhr) {
       xhr.setRequestHeader('Authorization', 'Basic ' + session.token);
     },
+    error: (xhr, ajaxOptions, thrownError) => {
+      $('#panier .alertes').html(`<div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>${xhr.responseText}</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>`);
+    },
     success: function (result) {
+      $('#panier .alertes').html(`<div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Quantité mise à jour !</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>`);
       chargerpanier();
     },
   });
@@ -142,11 +158,7 @@ function ajouterItem(item) {
 
 function isItemLeft(item) {
   prod = recupereProduit(item);
-  if (prod.qte_inventaire >= 1) {
-    return true;
-  } else {
-    return false;
-  }
+  return prod.qte_inventaire > 0;
 }
 
 function enleverItem(item) {
@@ -162,7 +174,18 @@ function enleverItem(item) {
         beforeSend: function (xhr) {
           xhr.setRequestHeader('Authorization', 'Basic ' + session.token);
         },
+        error: (xhr, ajaxOptions, thrownError) => {
+          $('#panier .alertes').html(`<div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>${xhr.responseText}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+          `);
+        },
         success: function () {
+          $('#panier .alertes').html(`<div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Quantité mise à jour !</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>`);
           chargerpanier();
         },
       });
