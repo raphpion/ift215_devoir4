@@ -31,7 +31,7 @@ function placerCommande() {
     document.getElementById('annee').value = "";
 
     $.ajax({
-        url: '/',
+        url: '/ventes',
         method: 'POST',
         data: { idClient: ID_CLIENT},
         beforeSend: function (xhr) {
