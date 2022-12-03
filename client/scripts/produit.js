@@ -90,6 +90,7 @@ function ajouterTotalItem(item) {
     },
     success: result => {
       const produitCourant = result.items.find(item_temp => item_temp.idProduit === item);
+      console.log(produitCourant);
 
       if (!produitCourant) {
         add_item(item, value);
@@ -105,9 +106,22 @@ function ajouterTotalItem(item) {
         beforeSend: function (xhr) {
           xhr.setRequestHeader('Authorization', 'Basic ' + session.token);
         },
-        success: function (result) {
+        error: function (xhr) {
+          $('#produit .alertes').append(`<div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>${xhr.responseText}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+          `);
           $('#submit-qty').prop('disabled', false).html('Ajouter au panier');
-          chargerpanier();
+        },
+        success: function (result) {
+          $('#produit .alertes').append(`<div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>${value} produit${value > 1 ? 's' : ''} ajouté${value > 1 ? 's' : ''} au panier !</strong>
+            <a href="#/panier">Aller au panier</a>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>`);
+          $('#submit-qty').prop('disabled', false).html('Ajouter au panier');
+          $('#item_counter').text(result.items.length);
         },
       });
     },
@@ -196,9 +210,20 @@ function add_item(id_item, value = 1) {
     beforeSend: function (xhr) {
       xhr.setRequestHeader('Authorization', 'Basic ' + session.token);
     },
+    error: () => {
+      $('#produit .alertes').append(`<div class="alert alert-danger alert-dismissible fade show" role="alert">
+          <strong>Erreur !</strong> Nous n'avons pas pu ajouter le produit à votre panier. Veuillez réessayer plus tard.
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      `);
+    },
     success: function (result) {
+      $('#produit .alertes').append(`<div class="alert alert-success alert-dismissible fade show" role="alert">
+          <strong>${value} produit${value > 1 ? 's' : ''} ajouté${value > 1 ? 's' : ''} au panier !</strong>
+          <a href="#/panier">Aller au panier</a>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>`);
       $('#item_counter').text(result.items.length);
-      $('#nav_item_counter').text(result.items.length);
     },
   });
 }
