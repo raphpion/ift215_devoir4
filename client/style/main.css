@@ -142,6 +142,7 @@ section.inner {
 fieldset {
   max-width: 500px;
 }
+
 form .group {
   margin-bottom: 20px;
 }
@@ -345,9 +346,12 @@ tr:nth-child(odd) {
   position: relative;
 }
 
-.payerBody {
-  margin: 10%;
-  width: 30%;
+#payer .row {
+  justify-content: space-between;
+}
+
+.payerResume {
+  margin-left: 120px;
 }
 
 .date {
@@ -363,7 +367,6 @@ tr:nth-child(odd) {
 }
 
 #bordure {
-
   border: 2px solid #000;
   border-radius: 20px;
   padding: 8px;

@@ -10,7 +10,7 @@ class GestionVentes {
       recue: 'reçue',
       prepare: 'préparée',
       en_route: 'en route',
-      livree: 'livrée'
+      livree: 'livrée',
     };
   }
 
@@ -44,8 +44,10 @@ class GestionVentes {
    * @param res
    */
   ajouterVente(req, res) {
-    const idClient = req.body.idClient;
+    const idClient = parseInt(req.body.idClient);
     const client = this.collectionClient.recupereClient(idClient);
+    console.log(idClient);
+    console.log(client);
     if (client) {
       if (client.panier.valeur > 0) {
         const vente = new Vente(-1, idClient, client.panier.valeur, client.panier.items, this.statusPossibles.recue, new Date());
@@ -96,9 +98,11 @@ class GestionVentes {
       const idClient = parseInt(req.query.client);
 
       res.send(this.collectionVente.rechercheVentes(idClient, status, Date.parse(depuis)));
-    } else { // sinon c'est un get avec ID ou sans contrainte
+    } else {
+      // sinon c'est un get avec ID ou sans contrainte
       let id = parseInt(req.params.idVente);
-      if (!(id >= 0)) { // sans la parenthese, !id est évalué avant le >= parce que javascript
+      if (!(id >= 0)) {
+        // sans la parenthese, !id est évalué avant le >= parce que javascript
         id = -1;
       }
       res.send(this.collectionVente.recupereVentes(id));

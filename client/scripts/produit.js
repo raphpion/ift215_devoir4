@@ -169,11 +169,13 @@ function item_to_html(item) {
         <h1 class="card-title text-center">$${item.prix}</h1>
         <ul class="list-unstyled mt-3 mb-5">
           <li id="quantite">Quantite : ${item.qte_inventaire}</li>
-          <li id="categorie">Categorie : ${item.categorie.nom}</li>
+          ${item.categorie !== undefined ? `<li id="categorie">Categorie : ${item.categorie.nom}</li>` : ``}
           <li id="description">Description : ${item.description}</li>
         </ul>
         <div class="produit-buttons mb-3">
-          <button type="button" id="btn-panier-${item.id}" class="btn btn-primary position-relative w-100 mb-2" onclick="add_item(${item.id})">Ajouter au panier <i class="bi bi-cart-plus"></i></button>
+          <button type="button" id="btn-panier-${item.id}" class="btn btn-primary position-relative w-100 mb-2" onclick="add_item(${
+    item.id
+  })">Ajouter au panier <i class="bi bi-cart-plus"></i></button>
           <a class="btn btn-warning w-100" href="#/produit?id=0">En savoir plus</a>
         </div>
       </div>

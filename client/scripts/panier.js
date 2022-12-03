@@ -41,7 +41,7 @@ function chargerpanier() {
         <h2 class="prixTot" id="prixTOT"></h2>
       </div>
       <div class="buttonConfirmation">
-        <a class="btn btn-primary" id="buttonConfirmer" href="#/confirmationcommande">Confirmer la commande</a>
+        <a class="btn btn-primary" id="buttonConfirmer" href="#/payer">Confirmer la commande</a>
       </div>`);
 
       $.each(result.items, function (key, value) {
@@ -233,5 +233,5 @@ function chargerTotal() {
 }
 
 function confirmation() {
-  window.location.replace('#/confirmationcommande');
+  window.location.replace('#/payer');
 }
