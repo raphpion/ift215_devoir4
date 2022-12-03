@@ -19,7 +19,11 @@ function remplirNavigation() {
     $('#nav-auth').html(`<li class="nav-item">
       <button id="btn-logout" class="btn btn-outline-danger" onClick="gererDeconnexion()">Déconnexion</button>
     </li>
-  `);
+    <li class="nav-item">
+      <a id="bouton-panier" class="btn btn-primary" href="#/panier">
+        <i class="bi bi-cart"></i>
+      </a>
+    </li>`);
   } else {
     $('#nav-auth').html(`<li class="nav-item">
       <a class="btn btn-outline-primary" href="#/inscription">Inscription</a>
@@ -52,7 +56,7 @@ function gererDeconnexion() {
 /**
  * Fonction qui va provoquer l'appel de la fonction racine du script propre à la page qui vient d'être chargée.
  */
- function chargerSousContenu() {
+function chargerSousContenu() {
   let nom = 'charger' + location.hash.replace('#/', '');
   nom = nom.split('?')[0];
   if (!window[nom]) return;
@@ -92,6 +96,7 @@ async function hashHandler() {
       remplacerContenu('corps-principal', contenu);
     }
   } catch (erreur) {
+    console.log(erreur);
     console.log(erreur.message);
   }
 }
