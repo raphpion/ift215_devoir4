@@ -1,39 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    <a href="#/produit" id="basicRetour"><i class="bi bi-arrow-left-short"i></i> Retourner a la boutique </a>
+<div class="container mb-5">
+  <a href="#/produit" id="basicRetour"><i class="bi bi-arrow-left-short" i></i> Retourner a la boutique </a>
   <h1 class="panier_titre">Votre Panier</h1>
-  <section id="empty_panier">
-  </section>
-<section class="mt-2 container">
-    <div class="row" id="liste_panier">
-        <i className="bi bi-trash"></i>
-        <table class="table table-panier" id="table_panier">
-            <thead>
-                <tr>
-                    <th>Nom de l'article</th>
-                    <th>Prix à l'unité</th>
-                    <th>Quantité</th>
-                    <th class="centrer">Total</th>
-                    <th></th>
-                </tr>
-            </thead>
-
-            <tbody id="body_table" >
-            </tbody>
-        </table>
-    </div>
-    <div>
-        <h2 class="prixTot" id="prixTOT"></h2>
-    </div>
-    <div class="buttonConfirmation">
-        <button type="button" class="btn btn-primary" id="buttonConfirmer" onclick="confirmation()">Confirmer la commande</button>
-
-    </div>
-</section>
-</body>
-</html> 
+</div>
+<section id="panier" class="container mt-2"></section>

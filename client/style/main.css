@@ -253,7 +253,9 @@ form .group select {
 }
 
 .buttonConfirmation {
-  float: right;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
   margin-top: 30px;
 }
 
@@ -265,14 +267,14 @@ tr:nth-child(odd) {
   background-color: rgb(239, 239, 239);
 }
 
-.panier_titre{
+/* .panier_titre {
   margin-left: 6%;
-}
+} */
 
-#empty_panier {
+/* #empty_panier {
   margin-left: 6%;
   padding-top: 3%;
-}
+} */
 
 .onSide {
   text-align: right;
@@ -282,22 +284,40 @@ tr:nth-child(odd) {
   width: 140px;
 }
 
-input[type=submit] {
-  padding:5px 15px; 
-  background:rgb(255, 255, 255); 
+#produit input[type='number'] {
+  padding: 5px 15px;
+  background: rgb(255, 255, 255);
   border: 0;
-  cursor:pointer;
+  cursor: pointer;
   -webkit-border-radius: 5px;
-  border-radius: 50%; 
+  border-radius: 100px;
+  box-shadow: 0px 4px 4px 0px #00000040;
+  max-width: 100px;
 }
 
-input[type=button] {
-  padding:5px 15px; 
-  background:#0b5ed7;
+#produit input[type='button'] {
+  border-radius: 100%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #0b5ed7;
   color: white;
-  border:0 none;
-  cursor:pointer;
-  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0px 4px 4px 0px #00000040;
+}
+
+#produit .boutons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+#produit .boutons > div {
+  width: fit-content;
 }
 
 #formulaire-inscription > div.form-control,
@@ -314,4 +334,9 @@ input[type=button] {
 
 #nav-auth {
   gap: 12px;
+}
+
+#bouton-panier {
+  display: block;
+  position: relative;
 }
