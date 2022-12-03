@@ -48,7 +48,6 @@ function chargerproduit() {
         console.log(result);
 
         item = inner_item(result);
-        dummy = item_to_html(result);
         $('#list_items').append(item);
       },
     });
@@ -142,57 +141,44 @@ function deIncrementValue() {
 
 //Process et affichage d'un produit singulier
 function inner_item(item) {
-  item_panier = $('<div></div>')
-    .addClass('row')
-    .append('<div class="col">' + '<img alt class="mb-3" src="../images/dumdum.png" > ' + '<h4> Description </h4>' + item.description + '</div>')
-
-    .append(
-      '<div class="col">' +
-        '<h3>' +
-        item.nom +
-        '</h3>' +
-        '<h3>' +
-        item.prix +
-        '$</h3>' +
-        '<p><strong>Quantité</strong></p> ' +
-        '<div class="boutons mb-3">' +
-        '<div><input type="button" onclick="deIncrementValue()" value="-" /></div>' +
-        '<div><input type="number" id="number" value="0" min="0" /></div>' +
-        '<div><input type="button" onclick="incrementValue()" value="+" /></div>' +
-        '</div>' +
-        `<a id="submit-qty" class="btn btn-primary" onclick="ajouterTotalItem(` +
-        item.id +
-        `)">Ajouter au panier</a>` +
-        '</div>'
-    );
-
-  return item_panier.append();
+  return $(`<div class="row">
+    <div class="col">
+      <img alt="" class="mb-3" src="../images/dumdum.png" />
+      <h4>Description</h4>
+      ${item.description}
+    </div>
+    <div class="col">
+      <h3>${item.nom}</h3>
+      <h3>$${item.prix}</h3>
+      <p><strong>Quantité</strong></p>
+      <div class="boutons mb-3">
+        <div><button class="btn btn-primary qty-button" onclick="deIncrementValue()"><i class="bi bi-dash"></i></button></div>
+        <div><input type="number" id="number" value="0" min="0" /></div>
+        <div><button class="btn btn-primary qty-button" onclick="incrementValue()"><i class="bi bi-plus"></i></button></div>
+      </div>
+      <a id="submit-qty" class="btn btn-primary" onclick="ajouterTotalItem(${item.id})">Ajouter au panier</a>
+    </div>
+  </div>`);
 }
 
 function item_to_html(item) {
-  item_card = $('<div></div>').addClass('card mb-4 rounded-3 shadow-sm');
-  item_head = $('<div></div>')
-    .addClass('card-header py-3')
-    .append('<h4 class="my-0 fw-normal">' + item.nom + '</h4>');
-  item_detail = $('<ul></ul>')
-    .addClass('list-unstyled mt-3 mb-4')
-    .append('<li id="quantite">Quantite : ' + item.qte_inventaire + '</li>')
-    .append('<li id="categorie">Categorie : ' + item.nom + '</li>')
-    .append('<li id="description">Description : ' + item.description + '</li>');
-  item_body = $('<div></div>')
-    .addClass('card-body')
-    .append(' <h1 class="card-title text-center"> $' + item.prix + '</h1>');
-  item_footer = $('<p></p>')
-    .addClass('w-100 display-6 text-center')
-    .append(
-      '<button type="button" class="btn btn-primary position-relative" onclick="add_item(' +
-        item.id +
-        ')">' +
-        ' <i class="bi bi-cart-plus"></i> </button>'
-    )
-    .append(`<a class="btn btn-warning" href="#/produit?id=${item.id}">En savoir plus</a>`);
-  item_card.append(item_head).append(item_body).append(item_detail).append(item_footer);
-  return $('<div></div>').addClass('col-md-3').append(item_card);
+  return $(`<div class="col-md-4">
+    <div class="card mb-4 rounded-3 shadow-sm">
+      <div class="card-header py-3"><h4 class="my-0 fw-normal">${item.nom}</h4></div>
+      <div class="card-body">
+        <h1 class="card-title text-center">$${item.prix}</h1>
+        <ul class="list-unstyled mt-3 mb-5">
+          <li id="quantite">Quantite : ${item.qte_inventaire}</li>
+          <li id="categorie">Categorie : ${item.categorie.nom}</li>
+          <li id="description">Description : ${item.description}</li>
+        </ul>
+        <div class="produit-buttons mb-3">
+          <button type="button" id="btn-panier-${item.id}" class="btn btn-primary position-relative w-100 mb-2" onclick="add_item(${item.id})">Ajouter au panier <i class="bi bi-cart-plus"></i></button>
+          <a class="btn btn-warning w-100" href="#/produit?id=0">En savoir plus</a>
+        </div>
+      </div>
+    </div>
+  </div>`);
 }
 
 function add_item(id_item, value = 1) {
