@@ -9,7 +9,7 @@ function vente_couleur_status(status) {
   status_couleur.set('en route', 'primary');
   status_couleur.set('livrée', 'success');
 
-  if (!status_couleur.has(status)) return status_couleur.get('prepare');
+  if (!status_couleur.has(status)) return status_couleur.get('reçue');
 
   return status_couleur.get(status);
 }
@@ -68,14 +68,28 @@ function vente_to_html(vente, client) {
 }
 
 function annulerVente(idVente, idClient) {
+  const session = SessionManager.getSession();
+  if (!session || session.role !== 'admin') window.location.replace('#/');
+
   $.ajax({
     url: '/ventes/' + idVente,
     method: 'DELETE',
     data: { idClient: idVente },
     beforeSend: function (xhr) {
-      xhr.setRequestHeader('Authorization', 'Basic ' + TOKEN_VENTE);
+      xhr.setRequestHeader('Authorization', 'Basic ' + session.token);
+    },
+    error: (xhr, ajaxOptions, thrownError) => {
+      $('#vente .alertes').append(`<div class="alert alert-danger alert-dismissible fade show" role="alert">
+          <strong>${xhr.responseText}</strong>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      `);
     },
     success: function (result) {
+      $('#vente .alertes').append(`<div class="alert alert-success alert-dismissible fade show" role="alert">
+          <strong>La vente a bien été annulée !</strong>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>`);
       $(`#vente-${idVente}`).fadeOut(400, () => {
         $(this).remove();
       });
@@ -102,10 +116,21 @@ function changerstatus(idVente) {
     beforeSend: function (xhr) {
       xhr.setRequestHeader('Authorization', 'Basic ' + session.token);
     },
+    error: (xhr, ajaxOptions, thrownError) => {
+      $('#vente .alertes').append(`<div class="alert alert-danger alert-dismissible fade show" role="alert">
+          <strong>${xhr.responseText}</strong>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      `);
+    },
     success: () => {
       const ancienneCouleur = vente_couleur_status(oldStatus);
       const couleur = vente_couleur_status(newStatus);
       btnStatus.removeClass(`btn-${ancienneCouleur}`).addClass(`btn-${couleur}`).text(newStatus);
+      $('#vente .alertes').append(`<div class="alert alert-success alert-dismissible fade show" role="alert">
+          <strong>Le statut de la vente a bien été changé pour : ${newStatus}</strong>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>`);
     },
   });
 }
@@ -119,6 +144,13 @@ function chargervente() {
     beforeSend: function (xhr) {
       xhr.setRequestHeader('Authorization', 'Basic ' + session.token);
     },
+    error: (xhr, ajaxOptions, thrownError) => {
+      $('#vente .alertes').append(`<div class="alert alert-danger alert-dismissible fade show" role="alert">
+          <strong>${xhr.responseText}</strong>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      `);
+    },
     success: function (result) {
       console.table(result);
       $.each(result, function (key, value) {
@@ -127,6 +159,13 @@ function chargervente() {
           method: 'GET',
           beforeSend: function (xhr) {
             xhr.setRequestHeader('Authorization', 'Basic ' + session.token);
+          },
+          error: (xhr, ajaxOptions, thrownError) => {
+            $('#vente .alertes').append(`<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>${xhr.responseText}</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+            `);
           },
           success: function (result) {
             // client = [result.nom, result.prenom, result.pays];
