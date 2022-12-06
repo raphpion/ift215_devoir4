@@ -26,16 +26,16 @@ function vente_to_html(vente, client) {
 
   const vente_html = $(`<div class="card mb4-rounded-3 shadow-sm mb-5" id="vente-${vente.id}">
     <div class="card-header py-3">
-      <div class="row">
+      <div class="row mb-3">
         <h4 class="my-0 fw-normal col">Commande No.${vente.id}</h4>
         <button class="btn btn-${couleur} col status" onclick="changerstatus(${vente.id})">${vente.status}</button>
       </div>
     </div>
-    <div class="row">
+    <div class="row vente">
       <div class="col">
         <div class="row" style="margin-left: 1rem" id="list_venteProd_${vente.id}">
           ${vente.produits.map(produit => {
-            return `${produit.quantite}x ${produit.nomProduit}`;
+            return ` ${produit.quantite}x ${produit.nomProduit}`;
           })}
         </div>
         <div class="row" style="margin-left: 1rem">

@@ -381,11 +381,15 @@ tr:nth-child(odd) {
 .status {
   text-align: center;
   border-radius: 10px;
-  max-width:fit-content !important;
+  max-width: fit-content !important;
 }
 
 .deleteButton {
   text-align: right;
   margin-bottom: 1%;
   margin-right: 1%;
+}
+
+.row.vente {
+  padding: 16px 8px;
 }

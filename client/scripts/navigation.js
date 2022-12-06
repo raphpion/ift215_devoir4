@@ -16,6 +16,11 @@ document.addEventListener(
 function remplirNavigation() {
   const session = SessionManager.getSession();
   if (session) {
+    if (session.role === 'admin') {
+      $('#sitemap').append(`<li class="nav-item">
+      <a class="nav-link" href="#/vente">Gestion des ventes</a>
+    </li>`);
+    }
     $('#nav-auth').html(`<li class="nav-item">
       <button id="btn-logout" class="btn btn-outline-danger" onClick="gererDeconnexion()">Déconnexion</button>
     </li>
@@ -50,6 +55,7 @@ function gererDeconnexion() {
   });
 
   SessionManager.clearSession();
+  window.location.reload();
   remplirNavigation();
 }
 
